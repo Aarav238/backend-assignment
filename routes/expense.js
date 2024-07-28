@@ -1,7 +1,7 @@
 import express from "express";
-import auth from "../middlewares/auth";
-import { validateExpense } from "../middlewares/validation";
-import { balanceSheet, getExpense, postExpense } from "../controllers/expense";
+import auth from "../middlewares/auth.js";
+import { validateExpense } from "../middlewares/validation.js";
+import { balanceSheet, getExpense, postExpense } from "../controllers/expense.js";
 
 
 

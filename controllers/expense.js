@@ -1,5 +1,5 @@
-import Expense from "../models/Expense";
-import { calculateBalanceSheet, calculateSplits } from "../utils/expenseSplitter";
+import Expense from "../models/Expense.js";
+import { calculateBalanceSheet, calculateSplits } from "../utils/expenseSplitter.js";
 
 export const postExpense = async(req,res) => {
     try {
