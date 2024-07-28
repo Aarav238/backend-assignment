@@ -9,8 +9,8 @@
 
 1. Clone the repository (or create a new directory and copy the files into it):
    ```
-   git clone 
-   cd expense-sharing-app
+   git clone https://github.com/Aarav238/backend-assignment.git
+   cd backend-assignment
    ```
 
 2. Install dependencies:
@@ -35,7 +35,7 @@
    npm run dev
    ```
 
-The server should now be running on `http://localhost:5000` or the port you defined in `.env`
+The server should now be running on `http://localhost:5000` or the port you have defined in `.env`
 
 ## Testing the API
 
