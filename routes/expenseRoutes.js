@@ -1,7 +1,7 @@
 import express from "express";
 import auth from "../middlewares/auth.js";
 import { validateExpense } from "../middlewares/validation.js";
-import { balanceSheet, downloadBalanceSheet, getAllExpenses, getExpense, postExpense } from "../controllers/expense.js";
+import { balanceSheet, downloadBalanceSheet, getAllExpenses, getExpense, postExpense } from "../controllers/expenseControllers.js";
 
 
 

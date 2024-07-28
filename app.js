@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //import routes
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
-import expenseRoutes from './routes/expense.js';
+import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import expenseRoutes from './routes/expenseRoutes.js';
 
 
 const app = express();
