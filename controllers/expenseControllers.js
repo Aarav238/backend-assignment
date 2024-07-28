@@ -1,6 +1,7 @@
 import Expense from "../models/Expense.js";
 import { calculateBalanceSheet, calculateSplits } from "../utils/expenseSplitter.js";
 import { Parser } from "json2csv";
+
 export const postExpense = async(req,res) => {
     try {
         const expense = new Expense({
@@ -77,8 +78,8 @@ export const downloadBalanceSheet = async (req, res) => {
       const csv = parser.parse(balanceSheet);
   
       // Set headers to prompt file download
-      res.header("Content-Type", "text/csv");
-      res.attachment("balance-sheet.csv");
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=balance-sheet.csv');
   
       // Send CSV data
       res.send(csv);
@@ -86,3 +87,5 @@ export const downloadBalanceSheet = async (req, res) => {
       res.status(500).send(error);
     }
 };
+
+
