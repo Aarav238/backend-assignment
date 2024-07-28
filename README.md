@@ -89,11 +89,21 @@ You can use tools like Postman or curl to test the API endpoints. Here are some 
    GET http://localhost:3000/api/expenses
    Authorization: Bearer <your-token>
    ```
+5. Get all expenses:
+   ```
+   GET http://localhost:3000/api/expenses/all
+   Authorization: Bearer <your-token>
+   ```
 
-5. Get balance sheet:
+6. Get balance sheet:
    ```
    GET http://localhost:3000/api/expenses/balance-sheet
    Authorization: Bearer <your-token>
+   ```
+7. Get balance sheet:
+   make sure you use browser for this `GET` request as it will prompt the download for you. 
+   ```
+   GET http://localhost:3000/api/expenses/balance-sheet/download
    ```
 
 Remember to replace `<your-token>` with the actual token you received from the login request.
