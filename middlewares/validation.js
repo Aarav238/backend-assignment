@@ -33,15 +33,17 @@ export const validateLogin = (req, res, next) => {
       amount: Joi.number().positive().required(),
       description: Joi.string().required(),
       splitMethod: Joi.string().valid('equal', 'exact', 'percentage').required(),
-      splits: Joi.array().items(Joi.object({
+      : Joi.array().items(Joi.object({
         user: Joi.string().required(),
-        amount: Joi.number().when('splitMethod', {
+        amount: Joi.number().when('..splitMethod', {
           is: 'exact',
-          then: Joi.required()
+          then: Joi.required(),
+          otherwise: Joi.forbidden()
         }),
-        percentage: Joi.number().when('splitMethod', {
+        percentage: Joi.number().when('..splitMethod', {
           is: 'percentage',
-          then: Joi.required().min(0).max(100)
+          then: Joi.number().min(0).max(100).required(),
+          otherwise: Joi.forbidden()
         })
       })).required()
     });
