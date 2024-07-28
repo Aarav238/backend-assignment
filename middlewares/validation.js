@@ -33,23 +33,31 @@ export const validateLogin = (req, res, next) => {
       amount: Joi.number().positive().required(),
       description: Joi.string().required(),
       splitMethod: Joi.string().valid('equal', 'exact', 'percentage').required(),
-      : Joi.array().items(Joi.object({
+      splits: Joi.array().items(Joi.object({
         user: Joi.string().required(),
-        amount: Joi.number().when('..splitMethod', {
-          is: 'exact',
-          then: Joi.required(),
-          otherwise: Joi.forbidden()
-        }),
-        percentage: Joi.number().when('..splitMethod', {
-          is: 'percentage',
-          then: Joi.number().min(0).max(100).required(),
-          otherwise: Joi.forbidden()
-        })
-      })).required()
+        amount: Joi.number().positive(),
+        percentage: Joi.number().min(0).max(100)
+      })).required().custom((value, helpers) => {
+        const { splitMethod } = helpers.state.ancestors[0];
+        
+        if (splitMethod === 'equal' && value.some(split => 'amount' in split || 'percentage' in split)) {
+          return helpers.error('any.invalid');
+        }
+        
+        if (splitMethod === 'exact' && (!value.every(split => 'amount' in split) || value.some(split => 'percentage' in split))) {
+          return helpers.error('any.invalid');
+        }
+        
+        if (splitMethod === 'percentage' && (!value.every(split => 'percentage' in split) || value.some(split => 'amount' in split))) {
+          return helpers.error('any.invalid');
+        }
+        
+        return value;
+      })
     });
   
-    const { error } = schema.validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    const { error } = schema.validate(req.body, { abortEarly: false });
+    if (error) return res.status(400).send(error.details.map(detail => detail.message).join(', '));
   
     next();
   };
