@@ -1,4 +1,4 @@
-# Expense Sharing Application Setup
+# Expense Sharing Application
 
 ## Prerequisites
 - Node.js (v14 or later)
