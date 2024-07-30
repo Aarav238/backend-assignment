@@ -11,8 +11,7 @@ router.post('/',auth,validateExpense,postExpense);
 router.get('/',auth, getExpense);
 router.get('/all',auth,getAllExpenses);
 router.get('/balance-sheet',auth,balanceSheet);
-router.get('/balance-sheet/download',downloadBalanceSheet);
-
+router.get('/balance-sheet/download',auth,downloadBalanceSheet);
 
 
 export default router;
